@@ -8,8 +8,8 @@ function preload() {
   //load all the images
   controlIMG = loadImage("game img/background imgs/control point.png");
   TitleIMG = loadImage("game img/Title screen.png");
-  mfbwalking = loadAnimation("game img/pcs and npcs/mfb animations/pc1.png", "game img/pcs and npcs/mfb animations/pc2.png")
-
+  mfbwalkingright = loadAnimation("game img/pcs and npcs/mfb animations/pc1.png", "game img/pcs and npcs/mfb animations/pc2.png")
+  mfbwalkingleft = loadAnimation("game img/pcs and npcs/mfb animations/pcs and npcs copy 3.png", "game img/pcs and npcs/mfb animations/pcs and npcs copy 4")
   spawnIMG = loadImage("game img/background imgs/spawnpoint.png");
   riverIMG = loadImage("game img/background imgs/river side.png");
   roadImg = loadImage("game img/background imgs/road.png");
@@ -31,7 +31,8 @@ function setup() {
   createCanvas(displayWidth, displayHeight);
   mfb = createSprite(1000, 200);
   mfb.addAnimation("mfbIMG", mfbIMG);
-  mfb.addAnimation("mfbwalking", mfbwalking);
+  mfb.addAnimation("mfbwalking", mfbwalkingright);
+  mfb.addAnimation("mfbwalking", mfbwalkingleft);
   mfb.scale = 3
   cowfee = createSprite(200, 200);
   cowfee.addImage("cowfeeIMG", cowfeeIMG)
@@ -140,17 +141,17 @@ function draw() {
 function controlmfb() {
   //walking of mfb
   if (keyWentDown("left") || keyDown("a")) {
-    mfb.changeAnimation("mfbwalking", mfbwalking);
+    mfb.changeAnimation("mfbwalking", mfbwalkingleft);
     mfb.x = mfb.x - 20;
 
   }
   if (keyWentUp("left") || keyWentUp("a")) {
-    mfb.changeAnimation("mfbIMG", mfbIMG);
+    mfb.changeAnimation("mfbIMG", mfbwalkingleft);
     mfb.x = mfb.x - 20;
   }
 
   if (keyWentDown("up") || keyDown("w")) {
-    mfb.changeAnimation("mfbwalking", mfbwalking);
+    mfb.changeAnimation("mfbwalking", mfbwalkingright);
     mfb.y = mfb.y - 20;
 
   }
@@ -160,7 +161,7 @@ function controlmfb() {
   }
 
   if (keyWentDown("down") || keyDown("s")) {
-    mfb.changeAnimation("mfbwalking", mfbwalking);
+    mfb.changeAnimation("mfbwalking", mfbwalkingright);
     mfb.y = mfb.y + 20;
 
   }
@@ -169,16 +170,13 @@ function controlmfb() {
     mfb.y = mfb.y + 20;
   }
   if (keyWentDown("right") || keyDown("d")) {
-    mfb.changeAnimation("mfbwalking", mfbwalking);
+    mfb.changeAnimation("mfbwalking", mfbwalkingright);
     mfb.x = mfb.x + 20;
 
   }
   if (keyWentUp("right") || keyWentUp("d")) {
     mfb.changeAnimation("mfbIMG", mfbIMG);
     mfb.x = mfb.x - 5;
-
-
-
   }
  
   mfb.collide(edges[0])
